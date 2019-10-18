@@ -20,7 +20,9 @@ namespace GLTFast {
         const string ErrorUnsupportedColorFormat = "Unsupported Color format {0}";
 
         public static readonly HashSet<string> supportedExtensions = new HashSet<string> {
-            "KHR_draco_mesh_compression"
+            "KHR_draco_mesh_compression",
+            "KHR_materials_pbrSpecularGlossiness",
+            "KHR_materials_unlit"
         };
 
         enum ChunkFormat : uint
@@ -212,7 +214,7 @@ namespace GLTFast {
         List<ImageCreateContext> imageCreateContexts;
 
         bool loadingError = false;
-        public bool LoadingError { get => loadingError; private set => loadingError = value; }
+        public bool LoadingError { get { return loadingError; } private set { this.loadingError = value; } }
 
         static string GetUriBase( string url ) {
             var uri = new Uri(url);
